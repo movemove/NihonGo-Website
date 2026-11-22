@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NihonGo — 旅日會話、100 個日本旅遊實境對話、互動口說練習與雙向語音翻譯</title>
+<meta name="description" content="從五十音筆順打底、100 個日本旅遊實境對話影片，到 12 情境互動對話練習與繁中／日語雙向即時語音翻譯，免登入零追蹤。">
+<meta name="keywords" content="NihonGo,日語學習,日本旅遊日語,五十音,日語對話練習,雙向語音翻譯,日本旅遊實境對話,即時日文口譯,AE Interactive">
+<meta name="theme-color" content="#070913">
+<meta name="apple-itunes-app" content="app-id=6836279889">
+<link rel="canonical" href="https://nihongo.appengine.fun/?lang=zh-Hant">
+<link rel="alternate" hreflang="en" href="https://nihongo.appengine.fun/?lang=en">
+<link rel="alternate" hreflang="zh-Hant" href="https://nihongo.appengine.fun/?lang=zh-Hant">
+<link rel="alternate" hreflang="zh-Hans" href="https://nihongo.appengine.fun/?lang=zh-Hans">
+<link rel="alternate" hreflang="es" href="https://nihongo.appengine.fun/?lang=es">
+<link rel="alternate" hreflang="x-default" href="https://nihongo.appengine.fun/">
+<link rel="icon" type="image/png" href="/images/icon.png">
+<link rel="apple-touch-icon" href="/images/icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NihonGo — 旅日會話、100 個日本旅遊實境對話、互動口說練習與雙向語音翻譯">
+<meta property="og:description" content="從五十音筆順打底、100 個日本旅遊實境對話影片，到 12 情境互動對話練習與繁中／日語雙向即時語音翻譯，免登入零追蹤。">
+<meta property="og:url" content="https://nihongo.appengine.fun/?lang=zh-Hant">
+<meta property="og:image" content="https://nihongo.appengine.fun/images/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://nihongo.appengine.fun/images/og.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "NihonGo Travel Japanese", "operatingSystem": "iOS 17.0+, iPadOS 17.0+", "applicationCategory": "EducationApplication", "downloadUrl": "https://apps.apple.com/app/id6836279889", "installUrl": "https://apps.apple.com/app/id6836279889", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "AE Interactive", "url": "https://appengine.fun"}}</script>
+<style>
+:root {
+  --bg: #070913;
+  --card: rgba(20, 24, 42, 0.86);
+  --card-solid: #14182a;
+  --border: rgba(255, 255, 255, 0.11);
+  --text: #F8FAFC;
+  --muted: #94A3B8;
+  --indigo: #6366F1;
+  --teal: #2DD4BF;
+  --coral: #FB7185;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang TC", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(ellipse 80% 42% at 50% -5%, rgba(99, 102, 241, 0.24) 0%, transparent 70%),
+    radial-gradient(circle at 86% 18%, rgba(45, 212, 191, 0.14) 0%, transparent 45%);
+  background-repeat: no-repeat;
+}
+a { color: inherit; }
+header { position: sticky; top: 12px; z-index: 100; padding: 0 16px; }
+nav {
+  max-width: 980px; margin: 0 auto; padding: 10px 16px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  background: rgba(11, 14, 28, 0.84);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border); border-radius: 999px;
+  box-shadow: 0 12px 34px rgba(0,0,0,0.45);
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 17px; letter-spacing: -0.3px; }
+.brand img { width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(45, 212, 191, 0.45); }
+.nav-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.nav-links { display: flex; gap: 14px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.nav-links a { text-decoration: none; transition: color .18s; }
+.nav-links a:hover, .nav-links a.active { color: #fff; }
+.lang-picker {
+  display: flex; align-items: center; gap: 4px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09);
+  padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700;
+}
+.lang-picker a { color: var(--muted); text-decoration: none; padding: 2px 5px; border-radius: 99px; }
+.lang-picker a.active { color: var(--teal); background: rgba(45,212,191,0.14); }
+main { max-width: 980px; margin: 0 auto; padding: 36px 18px 64px; }
+.hero { text-align: center; padding: 20px 0 36px; }
+.badge {
+  display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.7px;
+  color: var(--teal); background: rgba(45,212,191,0.12);
+  border: 1px solid rgba(45,212,191,0.34); padding: 6px 14px; border-radius: 999px; margin-bottom: 16px;
+}
+h1 { font-size: clamp(30px, 5.4vw, 54px); font-weight: 900; letter-spacing: -1.1px; line-height: 1.12; margin-bottom: 14px; text-wrap: balance; }
+h1 span { background: linear-gradient(125deg, #818CF8 0%, #2DD4BF 62%, #FB7185 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-sub { max-width: 680px; margin: 0 auto 22px; color: var(--muted); font-size: clamp(15px, 2vw, 18px); text-wrap: balance; }
+.status-pill {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px;
+  background: rgba(99,102,241,0.14); border: 1px solid rgba(99,102,241,0.38);
+  color: #C7D2FE; font-size: 13px; font-weight: 700; margin-bottom: 22px;
+}
+.hero-cta { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px;
+  font-size: 14px; font-weight: 700; text-decoration: none; border: 1px solid transparent; cursor: pointer;
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: linear-gradient(135deg, #6366F1, #14B8A6); color: #fff; box-shadow: 0 10px 26px rgba(99,102,241,0.32); }
+.btn-ghost { background: rgba(255,255,255,0.06); border-color: var(--border); color: #E2E8F0; }
+.btn-appstore {
+  background: #fff; color: #090D16; border: 1px solid rgba(255,255,255,0.85);
+  padding: 9px 20px; gap: 10px; box-shadow: 0 12px 30px rgba(255,255,255,0.16), 0 8px 24px rgba(99,102,241,0.28);
+}
+.btn-appstore svg { width: 20px; height: 24px; fill: currentColor; flex-shrink: 0; }
+.btn-appstore .as-copy { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.12; text-align: left; }
+.btn-appstore .as-sub { font-size: 10px; font-weight: 700; opacity: 0.72; letter-spacing: 0.2px; }
+.btn-appstore .as-main { font-size: 15px; font-weight: 850; letter-spacing: -0.2px; }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px;
+  background: linear-gradient(135deg, #6366F1, #14B8A6); color: #fff; text-decoration: none;
+  font-size: 12.5px; font-weight: 800; box-shadow: 0 4px 14px rgba(99,102,241,0.35);
+  transition: transform .16s ease, filter .16s ease;
+}
+.nav-cta:hover { transform: translateY(-1px); filter: brightness(1.08); }
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
+.price-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 22px; padding: 24px;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 18px;
+}
+.price-card.pro {
+  border-color: rgba(45, 212, 191, 0.55);
+  background: linear-gradient(160deg, rgba(99,102,241,0.16), rgba(20,24,42,0.94) 45%, rgba(20,184,166,0.14));
+  box-shadow: 0 18px 40px rgba(0,0,0,0.42);
+}
+.price-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.price-tag { font-size: 11px; font-weight: 800; color: var(--teal); letter-spacing: 0.4px; margin-bottom: 4px; }
+.price-title { font-size: 20px; font-weight: 850; color: #fff; }
+.price-num { font-size: 26px; font-weight: 900; color: #fff; white-space: nowrap; }
+.price-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.price-list li { display: flex; gap: 9px; font-size: 14px; color: #CBD5E1; line-height: 1.45; }
+.price-list li span.chk { color: var(--teal); font-weight: 900; flex-shrink: 0; }
+.price-card .btn-appstore { justify-content: center; }
+.cta-banner {
+  margin-top: 56px; padding: 34px 24px; border-radius: 26px; text-align: center;
+  background: linear-gradient(135deg, rgba(99,102,241,0.22), rgba(20,184,166,0.18));
+  border: 1px solid rgba(45,212,191,0.35);
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.cta-banner img { width: 64px; height: 64px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.25); box-shadow: 0 10px 28px rgba(0,0,0,0.4); }
+.cta-banner h2 { margin-bottom: 0; }
+.cta-banner p { color: #CBD5E1; max-width: 540px; font-size: 15px; }
+section { margin-top: 56px; }
+.sec-head { text-align: center; margin-bottom: 24px; }
+.sec-head .badge { margin-bottom: 10px; }
+h2 { font-size: clamp(22px, 3.6vw, 34px); font-weight: 850; letter-spacing: -0.6px; margin-bottom: 8px; }
+.sec-sub { color: var(--muted); max-width: 620px; margin: 0 auto; font-size: 15px; }
+.audio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.audio-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 16px;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 12px;
+  transition: border-color .2s, transform .2s;
+}
+.audio-card.playing { border-color: var(--teal); box-shadow: 0 0 0 1px rgba(45,212,191,0.3), 0 14px 32px rgba(0,0,0,0.4); }
+.audio-tag { font-size: 11px; font-weight: 700; color: var(--teal); letter-spacing: 0.3px; }
+.audio-jp { font-size: 18px; font-weight: 800; margin-top: 6px; color: #fff; }
+.audio-romaji { font-size: 13px; color: #67E8F9; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; margin-top: 4px; }
+.audio-romaji b { background: rgba(251, 113, 133, 0.2); color: #FDA4AF; padding: 0 4px; border-radius: 4px; }
+.audio-meaning { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.play-btn {
+  align-self: flex-start; background: rgba(99,102,241,0.2); color: #C7D2FE; border: 1px solid rgba(99,102,241,0.4);
+  padding: 6px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 700; cursor: pointer;
+}
+.audio-card.playing .play-btn { background: var(--teal); color: #042F2E; border-color: var(--teal); }
+.gallery-strip {
+  display: flex; gap: 16px; overflow-x: auto; padding: 8px 4px 16px; scroll-snap-type: x mandatory;
+}
+.shot-card {
+  flex: 0 0 230px; scroll-snap-align: start; background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 10px; text-align: center;
+}
+.shot-card.wide { flex: 0 0 330px; }
+.shot-card img { width: 100%; height: auto; border-radius: 14px; display: block; }
+.shot-cap { font-size: 12.5px; font-weight: 700; color: #CBD5E1; margin-top: 9px; }
+.bento { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.bento-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 20px; }
+.bento-icon { font-size: 24px; margin-bottom: 10px; }
+.bento-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 6px; color: #fff; }
+.bento-card p { font-size: 14px; color: var(--muted); }
+.doc-box { max-width: 780px; margin: 14px auto; background: var(--card); border: 1px solid var(--border); border-radius: 22px; padding: 28px; }
+.doc-box h1 { font-size: clamp(24px, 4vw, 36px); text-align: left; }
+.doc-item { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); }
+.doc-item h2 { font-size: 18px; margin-bottom: 6px; color: #E2E8F0; }
+.doc-item p { font-size: 14.5px; color: var(--muted); }
+footer {
+  max-width: 980px; margin: 36px auto 0; padding: 24px 18px 42px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+  color: var(--muted); font-size: 13px;
+}
+footer a { color: #CBD5E1; text-decoration: none; }
+footer a:hover { color: var(--teal); }
+@media (max-width: 680px) {
+  nav { border-radius: 22px; padding: 10px 14px; }
+  .nav-right { gap: 8px; }
+  .hero-cta .btn { width: 100%; justify-content: center; max-width: 300px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn, .audio-card { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav aria-label="Main navigation">
+    <a class="brand" href="/?lang=zh-Hant">
+      <img src="/images/icon.webp" alt="NihonGo Icon" width="34" height="34">
+      <span>NihonGo</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="/privacy?lang=zh-Hant">隱私權政策</a>
+        <a href="/support?lang=zh-Hant">支援與常見問題</a>
+      </div>
+      <div class="lang-picker" role="navigation" aria-label="Language"><a href="/?lang=en">EN</a><a href="/?lang=zh-Hant" class="active">繁中</a><a href="/?lang=zh-Hans">简中</a><a href="/?lang=es">ES</a></div>
+      <a class="nav-cta" href="https://apps.apple.com/app/id6836279889" target="_blank" rel="noopener noreferrer">立即下載</a>
+    </div>
+  </nav>
+</header>
+<main>
+  <section class="hero">
+    <div class="badge">15 堂系統課 · 100 個日本旅遊實境對話 · 雙向語音翻譯 · 零廣告追蹤</div>
+    <h1>落地日本前，<span>先開口說出地道旅日會話</span></h1>
+    <p class="hero-sub">從五十音筆順與 100 個日本旅遊實境對話預習，銜接店員主動提問模擬，再到結帳櫃檯雙向即時語音翻譯——全程免註冊、零廣告、本機隱私優先。</p>
+    <div class="status-pill"> App Store 正式上架 · 免費下載體驗 · iPhone / iPad / iPhone Duo</div>
+    <div class="hero-cta">
+      <a class="btn btn-appstore" href="https://apps.apple.com/app/id6836279889" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span class="as-copy"><span class="as-sub">立即前往下載</span><span class="as-main">App Store</span></span></a>
+      <a class="btn btn-primary" href="#audio">▶ 試聽原生發音</a>
+      <a class="btn btn-ghost" href="#preview">瀏覽實機畫面 ↓</a>
+    </div>
+  </section>
+
+  <section id="audio">
+    <div class="sec-head">
+      <div class="badge">收錄真實 App 錄音室語音 · 助詞自然標註羅馬拼音</div>
+      <h2>點一下，立即試聽道地旅遊日語</h2>
+      <p class="sec-sub">直接試聽 NihonGo 內建 320 句單字實戰音檔之一——自動辨識助詞讀音（は → wa／を → o／へ → e）。</p>
+    </div>
+    <div class="audio-grid">
+        <article class="audio-card" id="card-0">
+          <div>
+            <div class="audio-tag">居酒屋 · 助詞は→wa</div>
+            <div class="audio-jp">お会計は別々でお願いします。</div>
+            <div class="audio-romaji">o kaikei <b>wa</b> betsubetsu de o negai shi masu</div>
+            <div class="audio-meaning">結帳麻煩分開算。</div>
+          </div>
+          <button type="button" class="play-btn" onclick="togglePhrase('p0','/audio/split.mp3',this,document.getElementById('card-0'),'播放','播放中')">▶ 播放</button>
+        </article>
+        <article class="audio-card" id="card-1">
+          <div>
+            <div class="audio-tag">電車轉乘 · 月台號</div>
+            <div class="audio-jp">新宿行きは三番線です。</div>
+            <div class="audio-romaji">Shinjuku yuki <b>wa</b> san bansen desu</div>
+            <div class="audio-meaning">往新宿的車在 3 號月台。</div>
+          </div>
+          <button type="button" class="play-btn" onclick="togglePhrase('p1','/audio/platform.mp3',this,document.getElementById('card-1'),'播放','播放中')">▶ 播放</button>
+        </article>
+        <article class="audio-card" id="card-2">
+          <div>
+            <div class="audio-tag">飯店入住 · 外來語詞彙</div>
+            <div class="audio-jp">チェックアウトは何時ですか。</div>
+            <div class="audio-romaji">chekkuauto <b>wa</b> nan ji desu ka</div>
+            <div class="audio-meaning">請問退房時間是幾點？</div>
+          </div>
+          <button type="button" class="play-btn" onclick="togglePhrase('p2','/audio/checkout.mp3',this,document.getElementById('card-2'),'播放','播放中')">▶ 播放</button>
+        </article>
+        <article class="audio-card" id="card-3">
+          <div>
+            <div class="audio-tag">禮貌應對必備句</div>
+            <div class="audio-jp">すみません、ちょっと待ってください。</div>
+            <div class="audio-romaji">sumimasen, chotto matte kudasai</div>
+            <div class="audio-meaning">不好意思，請稍等一下。</div>
+          </div>
+          <button type="button" class="play-btn" onclick="togglePhrase('p3','/audio/wait.mp3',this,document.getElementById('card-3'),'播放','播放中')">▶ 播放</button>
+        </article></div>
+  </section>
+
+  <section id="preview">
+    <div class="sec-head">
+      <div class="badge">實機畫面精選 · IPHONE 與 IPHONE DUO 雙螢幕</div>
+      <h2>單手直式大字體，通勤站立一眼看懂</h2>
+      <p class="sec-sub">專為日本旅行單手操作設計，支援三段字級調整與 iPhone Duo 摺疊內外雙螢幕及 iPad 13 吋。</p>
+    </div>
+    <div class="gallery-strip">
+        <div class="shot-card">
+          <img src="/images/zh-Hant_s01.webp" alt="15 堂實戰學習路徑" loading="lazy" width="640" height="1390">
+          <div class="shot-cap">15 堂實戰學習路徑</div>
+        </div>
+        <div class="shot-card">
+          <img src="/images/zh-Hant_s02.webp" alt="12 情境實戰互動對話" loading="lazy" width="640" height="1390">
+          <div class="shot-cap">12 情境實戰互動對話</div>
+        </div>
+        <div class="shot-card">
+          <img src="/images/zh-Hant_s03.webp" alt="日本現場 · 雙向語音翻譯" loading="lazy" width="640" height="1390">
+          <div class="shot-cap">日本現場 · 雙向語音翻譯</div>
+        </div>
+        <div class="shot-card">
+          <img src="/images/zh-Hant_s04.webp" alt="100 個日本旅遊實境對話" loading="lazy" width="640" height="1390">
+          <div class="shot-cap">100 個日本旅遊實境對話</div>
+        </div>
+        <div class="shot-card">
+          <img src="/images/zh-Hant_s05.webp" alt="五十音筆順與雙速發音" loading="lazy" width="640" height="1390">
+          <div class="shot-cap">五十音筆順與雙速發音</div>
+        </div>
+        <div class="shot-card wide">
+          <img src="/images/zh-Hant_duo.webp" alt="iPhone Duo 展開內螢幕" loading="lazy" width="760" height="1080">
+          <div class="shot-cap">iPhone Duo 展開內螢幕</div>
+        </div></div>
+  </section>
+
+  <section id="features">
+    <div class="sec-head">
+      <div class="badge">五大實戰模組</div>
+      <h2>從零基礎到旅日救急，一套就夠</h2>
+    </div>
+    <div class="bento">
+        <article class="bento-card">
+          <div class="bento-icon" aria-hidden="true">📚</div>
+          <h3>15 堂實戰路線＋18 堂文法句型</h3>
+          <p>從平假名、片假名、濁音、拗音起步，涵蓋餐廳點餐、藥妝免稅、車站轉乘、飯店入住與看診求助。</p>
+        </article>
+        <article class="bento-card">
+          <div class="bento-icon" aria-hidden="true">🎬</div>
+          <h3>100 個日本旅遊實境對話影片（200 句錄音）</h3>
+          <p>五大日本旅遊場景×四階段時間線編排，雙語字幕搭配文法關鍵提醒，臨場感輕鬆吸收。</p>
+        </article>
+        <article class="bento-card">
+          <div class="bento-icon" aria-hidden="true">💬</div>
+          <h3>12 情境實戰互動對話</h3>
+          <p>採用裝置端互動對話引導：由店員先主動開口提問，錄音練習時參考提示保留畫面，陪你完成 3 關任務。</p>
+        </article>
+        <article class="bento-card">
+          <div class="bento-icon" aria-hidden="true">🗣️</div>
+          <h3>雙向即時語音翻譯（底部最右一鍵直達）</h3>
+          <p>支援繁中／簡中／英文／西文 ↔ 日語語音及打字即時互譯，並附大字全螢幕給店員看字卡。</p>
+        </article>
+        <article class="bento-card">
+          <div class="bento-icon" aria-hidden="true">✍️</div>
+          <h3>104 五十音筆順臨摹與 160 SRS 單字卡</h3>
+          <p>筆順引導手寫練習、聽音辨字測驗、320 句單字發音，並支援標準／大字／特大三段字體。</p>
+        </article>
+        <article class="bento-card">
+          <div class="bento-icon" aria-hidden="true">🔒</div>
+          <h3>免登入註冊・100% 本機隱私</h3>
+          <p>無廣告聯播網、無第三方追蹤碼（NSPrivacyTracking = false），所有學習紀錄只保存在您的 iPhone 本機。</p>
+        </article></div>
+  </section>
+
+  <section id="pricing">
+    <div class="sec-head">
+      <div class="badge">無月費訂閱制 · 免費下載先體驗</div>
+      <h2>基礎免費暢學 · $3.99 一次永久買斷</h2>
+      <p class="sec-sub">免費打好五十音與核心會話基礎，需要完整 100 部情境短片與無限口譯時再單次解鎖即可。</p>
+    </div>
+    <div class="pricing-grid">
+      <article class="price-card">
+        <div>
+          <div class="price-head">
+            <div>
+              <div class="price-tag">NIHONGO FREE</div>
+              <div class="price-title">永久免費版</div>
+            </div>
+            <div class="price-num">免費 $0</div>
+          </div>
+          <ul class="price-list" style="margin-top:16px;"><li><span class="chk">✓</span><span>完整 104 字五十音圖表、發音與手寫臨摹</span></li><li><span class="chk">✓</span><span>完整 160 單字 SRS 記憶卡與 4 大聽讀測驗</span></li><li><span class="chk">✓</span><span>前 3 堂入門課程 ＋ 五大情境各 2 支（共 10 支）實境短片</span></li><li><span class="chk">✓</span><span>每日免費口說互動練習（5 次/日）與即時雙向口譯（8 次/日）</span></li></ul>
+        </div>
+        <a class="btn btn-ghost" style="justify-content:center;" href="https://apps.apple.com/app/id6836279889" target="_blank" rel="noopener noreferrer">前往 App Store 免費下載</a>
+      </article>
+      <article class="price-card pro">
+        <div>
+          <div class="price-head">
+            <div>
+              <div class="price-tag">一次買斷 · 終身無訂閱扣款</div>
+              <div class="price-title">NihonGo Pro 永久買斷</div>
+            </div>
+            <div class="price-num">$3.99</div>
+          </div>
+          <ul class="price-list" style="margin-top:16px;"><li><span class="chk">✓</span><span>完整解鎖全部 15 堂旅遊實戰課程（第 4–15 課）</span></li><li><span class="chk">✓</span><span>解鎖全 100 部實境旅遊對話影片與 200 句原生錄音</span></li><li><span class="chk">✓</span><span>12 大日本旅遊情境店員口說練習不限次數</span></li><li><span class="chk">✓</span><span>即時雙向語音口譯無限次使用（支援離線翻譯包）</span></li></ul>
+        </div>
+        <a class="btn btn-appstore" href="https://apps.apple.com/app/id6836279889" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span class="as-copy"><span class="as-sub">立即前往下載</span><span class="as-main">App Store</span></span></a>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <img src="/images/icon.webp" alt="NihonGo" width="64" height="64">
+    <h2>下一趟日本旅行，帶這套就夠了</h2>
+    <p>App Store 免費下載、免註冊登入，打開就能開始練日語。</p>
+    <a class="btn btn-appstore" href="https://apps.apple.com/app/id6836279889" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span class="as-copy"><span class="as-sub">立即前往下載</span><span class="as-main">App Store</span></span></a>
+  </section>
+</main>
+
+<footer>
+  <div>© 2026 AE Interactive. 保留所有權利。</div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;">
+    <a href="/?lang=zh-Hant">NihonGo</a>
+    <a href="https://apps.apple.com/app/id6836279889" target="_blank" rel="noopener noreferrer">App Store</a>
+    <a href="/privacy?lang=zh-Hant">隱私權政策</a>
+    <a href="/support?lang=zh-Hant">支援與常見問題</a>
+    <a href="https://appengine.fun" target="_blank" rel="noopener noreferrer">AE Interactive 工作室</a>
+    <a href="mailto:help@appengine.fun">help@appengine.fun</a>
+  </div>
+</footer>
+<script>
+const audioMap = {};
+let activeKey = null;
+function togglePhrase(key, src, btnEl, cardEl, playLabel, playingLabel) {
+  if (activeKey && activeKey !== key && audioMap[activeKey]) {
+    audioMap[activeKey].audio.pause();
+    audioMap[activeKey].audio.currentTime = 0;
+    audioMap[activeKey].btn.textContent = "▶ " + playLabel;
+    audioMap[activeKey].card.classList.remove("playing");
+  }
+  let item = audioMap[key];
+  if (!item) {
+    const a = new Audio(src);
+    item = { audio: a, btn: btnEl, card: cardEl };
+    a.addEventListener("ended", () => {
+      btnEl.textContent = "▶ " + playLabel;
+      cardEl.classList.remove("playing");
+      if (activeKey === key) activeKey = null;
+    });
+    audioMap[key] = item;
+  }
+  if (!item.audio.paused) {
+    item.audio.pause();
+    item.audio.currentTime = 0;
+    btnEl.textContent = "▶ " + playLabel;
+    cardEl.classList.remove("playing");
+    activeKey = null;
+  } else {
+    item.audio.play();
+    btnEl.textContent = "■ " + playingLabel;
+    cardEl.classList.add("playing");
+    activeKey = key;
+  }
+}
+</script>
+</body>
+</html>
