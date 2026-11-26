@@ -695,30 +695,87 @@ def footer_html(lang: str, t: dict) -> str:
 </footer>"""
 
 
-def head_html(lang: str, t: dict, title: str, canonical_path: str) -> str:
+OG_LOCALES = {
+    "en": "en_US",
+    "zh-Hant": "zh_TW",
+    "zh-Hans": "zh_CN",
+    "ja": "ja_JP",
+    "ko": "ko_KR",
+    "es": "es_ES",
+}
+
+
+def head_html(lang: str, t: dict, title: str, canonical_path: str, faq_items: list[tuple[str, str]] | None = None) -> str:
     q = f"?lang={lang}" if lang != "en" else ""
-    schema = json.dumps({
-        "@context": "https://schema.org",
+    canon_url = f"{ORIGIN}{canonical_path}{q}"
+    site_langs = ('en', 'zh-Hant', 'zh-Hans', 'es')
+    app_schema: dict = {
         "@type": "SoftwareApplication",
-        "name": "NihonGo Travel Japanese",
+        "name": 'NihonGo Travel Japanese',
+        "softwareVersion": '1.2.0',
         "operatingSystem": "iOS 17.0+, iPadOS 17.0+",
         "applicationCategory": "EducationApplication",
-        "downloadUrl": APP_STORE_URL,
-        "installUrl": APP_STORE_URL,
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD",
-        },
-        "publisher": {
+        "url": ORIGIN,
+        "image": f"{ORIGIN}/images/og.png",
+        "inLanguage": list(site_langs),
+        "isAccessibleForFree": True,
+        "offers": [
+            {"@type": "Offer", "name": "Free Forever", "price": "0", "priceCurrency": "USD"},
+            {"@type": "Offer", "name": "NihonGo Pro Lifetime", "price": "3.99", "priceCurrency": "USD"},
+        ],
+        "publisher": {"@id": "https://appengine.fun/#organization"},
+    }
+    if APP_STORE_URL:
+        app_schema["downloadUrl"] = APP_STORE_URL
+        app_schema["installUrl"] = APP_STORE_URL
+    graph: list[dict] = [
+        {
             "@type": "Organization",
+            "@id": "https://appengine.fun/#organization",
             "name": "AE Interactive",
-            "url": "https://appengine.fun",
+            "url": "https://appengine.fun/",
+            "sameAs": ["https://www.youtube.com/@appengine-a", "https://languages.appengine.fun/"],
         },
-    }, ensure_ascii=False)
+        {
+            "@type": "WebSite",
+            "@id": f"{ORIGIN}/#website",
+            "name": 'NihonGo',
+            "url": f"{ORIGIN}/",
+            "inLanguage": list(site_langs),
+            "publisher": {"@id": "https://appengine.fun/#organization"},
+        },
+        app_schema,
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "AE Interactive", "item": "https://appengine.fun/"},
+                {"@type": "ListItem", "position": 2, "name": "AE Languages", "item": "https://languages.appengine.fun/"},
+                {"@type": "ListItem", "position": 3, "name": 'NihonGo', "item": f"{ORIGIN}/"},
+            ] + (
+                [{"@type": "ListItem", "position": 4, "name": title, "item": canon_url}]
+                if canonical_path != "/"
+                else []
+            ),
+        },
+    ]
+    if faq_items:
+        graph.append({
+            "@type": "FAQPage",
+            "mainEntity": [
+                {"@type": "Question", "name": h, "acceptedAnswer": {"@type": "Answer", "text": p}}
+                for h, p in faq_items
+            ],
+        })
+    schema = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)
+    smart_banner = f'<meta name="apple-itunes-app" content="app-id={APP_STORE_ID}">\n' if APP_STORE_ID else ""
     alternates = "".join(
         f'<link rel="alternate" hreflang="{code}" href="{ORIGIN}{canonical_path}?lang={code}">\n'
-        for code in ("en", "zh-Hant", "zh-Hans", "es")
+        for code in site_langs
+    )
+    og_loc = OG_LOCALES.get(lang, "en_US")
+    og_loc_alts = "".join(
+        f'<meta property="og:locale:alternate" content="{OG_LOCALES[c]}">\n'
+        for c in site_langs if c != lang
     )
     return f"""<!DOCTYPE html>
 <html lang="{t['html_lang']}">
@@ -728,19 +785,28 @@ def head_html(lang: str, t: dict, title: str, canonical_path: str) -> str:
 <title>{html_mod.escape(title)}</title>
 <meta name="description" content="{html_mod.escape(t['desc'])}">
 <meta name="keywords" content="{html_mod.escape(t['keywords'])}">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="AE Interactive">
 <meta name="theme-color" content="#070913">
-<meta name="apple-itunes-app" content="app-id={APP_STORE_ID}">
-<link rel="canonical" href="{ORIGIN}{canonical_path}{q}">
+{smart_banner}<link rel="canonical" href="{canon_url}">
 {alternates}<link rel="alternate" hreflang="x-default" href="{ORIGIN}{canonical_path}">
 <link rel="icon" type="image/png" href="/images/icon.png">
 <link rel="apple-touch-icon" href="/images/icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="{html_mod.escape(title)}">
+<meta property="og:site_name" content="AE Interactive">
+<meta property="og:locale" content="{og_loc}">
+{og_loc_alts}<meta property="og:title" content="{html_mod.escape(title)}">
 <meta property="og:description" content="{html_mod.escape(t['desc'])}">
-<meta property="og:url" content="{ORIGIN}{canonical_path}{q}">
+<meta property="og:url" content="{canon_url}">
 <meta property="og:image" content="{ORIGIN}/images/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{html_mod.escape(title)}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{html_mod.escape(title)}">
+<meta name="twitter:description" content="{html_mod.escape(t['desc'])}">
 <meta name="twitter:image" content="{ORIGIN}/images/og.png">
+<meta name="twitter:image:alt" content="{html_mod.escape(title)}">
 <script type="application/ld+json">{schema}</script>
 <style>{CSS}</style>
 </head>"""
@@ -891,7 +957,8 @@ def build_doc_page(lang: str, t: dict, route: str, heading: str, sub: str, items
         f'<div class="doc-item"><h2>{html_mod.escape(h)}</h2><p>{html_mod.escape(p)}</p></div>'
         for h, p in items
     )
-    return f"""{head_html(lang, t, heading + ' | NihonGo', route)}
+    faq = items if route == '/support' else None
+    return f"""{head_html(lang, t, heading + ' | NihonGo', route, faq_items=faq)}
 <body>
 {nav_html(lang, route, t)}
 <main>
@@ -1005,15 +1072,20 @@ def main() -> None:
     images = {p.name: base64.b64encode(p.read_bytes()).decode("ascii") for p in sorted(IMG_DIR.glob("*"))}
     audio = {p.name: base64.b64encode(p.read_bytes()).decode("ascii") for p in sorted(AUD_DIR.glob("*.mp3"))}
 
-    sitemap_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>{ORIGIN}/</loc><priority>1.0</priority></url>
-  <url><loc>{ORIGIN}/?lang=zh-Hant</loc><priority>0.9</priority></url>
-  <url><loc>{ORIGIN}/?lang=zh-Hans</loc><priority>0.9</priority></url>
-  <url><loc>{ORIGIN}/?lang=es</loc><priority>0.9</priority></url>
-  <url><loc>{ORIGIN}/privacy</loc><priority>0.7</priority></url>
-  <url><loc>{ORIGIN}/support</loc><priority>0.7</priority></url>
-</urlset>"""
+    _site_langs = ('en', 'zh-Hant', 'zh-Hans', 'es')
+    def _sm_entry(path: str, code: str, prio: str) -> str:
+        loc = f"{ORIGIN}{path}" if code == "en" else f"{ORIGIN}{path}?lang={code}"
+        links = "\n".join(
+            [f'    <xhtml:link rel="alternate" hreflang="{c}" href="{ORIGIN}{path}?lang={c}"/>' for c in _site_langs]
+            + [f'    <xhtml:link rel="alternate" hreflang="x-default" href="{ORIGIN}{path}"/>']
+        )
+        return f"  <url>\n    <loc>{loc}</loc>\n    <lastmod>2026-11-26</lastmod>\n{links}\n    <priority>{prio}</priority>\n  </url>"
+
+    sitemap_urls = "\n".join(
+        [_sm_entry("/", c, "1.0" if c == "en" else "0.9") for c in _site_langs]
+        + [_sm_entry("/privacy", "en", "0.7"), _sm_entry("/support", "en", "0.7")]
+    )
+    sitemap_xml = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n{sitemap_urls}\n</urlset>'
     robots_txt = f"User-agent: *\nAllow: /\nSitemap: {ORIGIN}/sitemap.xml\n"
 
     worker_js = f"""const PAGES = {json.dumps(pages)};
